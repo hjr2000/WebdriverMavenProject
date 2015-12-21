@@ -1,4 +1,4 @@
-package Training.DecemberMavenProject;
+package training.WebdriverMavenProject;
 
 import java.util.concurrent.TimeUnit;
 

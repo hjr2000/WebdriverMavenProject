@@ -1,4 +1,4 @@
-package Training.DecemberMavenProject;
+package training.WebdriverMavenProject;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
