@@ -29,7 +29,7 @@ Desktop.ini
 ######################
  
 *.pydevproject
-.project
+#.project
 .metadata
 bin/**
 tmp/**
