@@ -1,4 +1,4 @@
-package src.main.java.Training.DecemberMavenProject;
+package Training.DecemberMavenProject;
 
 import java.util.concurrent.TimeUnit;
 
