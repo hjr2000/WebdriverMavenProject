@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="14.717867">
+<testcase classname="Test feature" name="Searching for something" time="14.717867">
+<system-out><![CDATA[Given I am on the homepage..................................................passed
+]]></system-out>
+</testcase>
+</testsuite>
