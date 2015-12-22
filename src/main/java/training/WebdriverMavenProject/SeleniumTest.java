@@ -71,17 +71,17 @@ public class SeleniumTest {
 	 }
 	public void searchForPillows(){
 
-		driver.findElement(By.id("searchbox")).clear();
+		driver.findElement(By.id("search")).clear();
 
-		driver.findElement(By.id("searchbox")).sendKeys("pillows");
+		driver.findElement(By.id("search")).sendKeys("pillows");
 
-		driver.findElement(By.cssSelector("button.buttonSearch.color1")).click();
+		driver.findElement(By.id("search_submit")).click();
 
 		}
 	
 	public void checkPageTitle(){
 
-		assertEquals("Pillows & V Shaped Pillows | Feather Pillows & More | Dunelm", driver.getTitle());
+		assertEquals("Pillows | Feather Pillow & Memory Foam Pillows | Dunelm", driver.getTitle());
 
 		}
 }
