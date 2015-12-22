@@ -12,6 +12,8 @@ import cucumber.api.junit.Cucumber;
 
 features = {"featurefiles/"},
 
+glue = {"stepDefinitions"},
+
 plugin = {"pretty",
 
 "html:target/cucumber-html-report",

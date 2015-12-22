@@ -1,6 +1,7 @@
-package training.WebdriverMavenProject;
+package stepDefinitions;
 
 import cucumber.api.java.en.*;
+import helperClasses.SeleniumTest;
 
 import org.junit.AfterClass;
 

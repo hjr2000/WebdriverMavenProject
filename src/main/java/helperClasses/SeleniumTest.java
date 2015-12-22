@@ -1,9 +1,12 @@
-package training.WebdriverMavenProject;
+package helperClasses;
 
 import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import pageObjects.PageObjects;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 
 //import org.openqa.selenium.firefox.FirefoxDriver;
