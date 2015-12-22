@@ -2,23 +2,21 @@ package stepDefinitions;
 
 import cucumber.api.java.en.*;
 import helperClasses.SeleniumTest;
-
-import org.junit.AfterClass;
-
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import training.WebdriverMavenProject.StartupTearDown;
+import org.openqa.selenium.WebDriver;
 
 public class StepDefs {
 	
 	private SeleniumTest script;
-
-	@Before
-	public void setUpWebDriver() throws Exception {
-
-	   script = new SeleniumTest();
-
-	   script.setUp();	   
-	}	
+	private WebDriver _driver;
+	
+	public StepDefs() throws Exception {
+		
+		_driver = StartupTearDown.setUp();
+		script = new SeleniumTest(_driver);
+		
+	}
+	
 	
 	@Given("^I am on the homepage$")
 	public void i_am_on_the_homepage() throws Throwable {
@@ -36,10 +34,5 @@ public class StepDefs {
 		script.checkPageTitle();
 	}
 	
-	@After
-	public void tearDown() throws Exception {
-
-	   script.tearDown();
-
-	}	
+	
 }
