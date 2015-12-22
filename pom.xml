@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>Training</groupId>
-  <artifactId>DecemberMavenProject</artifactId>
+  <artifactId>WebdriverMavenProject</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>DecemberMavenProject</name>
+  <name>WebdriverMavenProject</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -35,6 +35,6 @@
 	  <groupId>info.cukes</groupId>
 	  <artifactId>cucumber-junit</artifactId>
 	  <version>1.2.4</version>
-    </dependency>  
+    </dependency>    
   </dependencies>
 </project>
