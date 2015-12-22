@@ -1,6 +1,5 @@
 package training.WebdriverMavenProject;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
 import cucumber.api.java.After;
 
@@ -15,7 +14,6 @@ public class StepDefs {
 	   script.setUp();
 
 	   script.goToHomePage();
-
 	}
 
 	public void tidyUp() {
