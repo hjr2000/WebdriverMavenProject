@@ -1,4 +1,4 @@
-package training.WebdriverMavenProject;
+package utilities;
 
 import org.junit.runner.RunWith;
 

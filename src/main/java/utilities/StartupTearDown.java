@@ -1,7 +1,6 @@
-package training.WebdriverMavenProject;
+package utilities;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,12 +9,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class StartupTearDown {
 	
-	private static WebDriver driver;
-	private static String browserName;
-	private static String browserVersion;
-	private static String baseUrl;
+	private WebDriver driver;
+	private String browserName;
+	private String browserVersion;
+	private String baseUrl;
 	
-	public static WebDriver setUp() throws Exception {
+	public WebDriver setUp() throws Exception {
 
 		//driver = new FirefoxDriver();
 
@@ -25,7 +24,7 @@ public class StartupTearDown {
 
 		//driver = new  SafariDriver();
 
-		baseUrl = "http://www.dunelm-mill.com/";
+		baseUrl = "https://www.google.com/";
 
 		//note due to issue in wordpress, on the blog the URL does not display properly above. The URL should end with a forward slash, then quote marks, then a semi colon.
 
@@ -45,11 +44,10 @@ public class StartupTearDown {
 	}	
 	
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 
 		System.out.println("teardown");
 		driver.quit();
-
 	}	
 
 }

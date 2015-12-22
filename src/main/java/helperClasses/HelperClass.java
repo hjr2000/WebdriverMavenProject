@@ -1,25 +1,24 @@
 package helperClasses;
 
 import static org.junit.Assert.*;
+
 import org.openqa.selenium.*;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 import pageObjects.PageObjects;
-
-import org.openqa.selenium.chrome.ChromeDriver;
 
 //import org.openqa.selenium.firefox.FirefoxDriver;
 //import org.openqa.selenium.ie.InternetExplorerDriver;
 //import org.openqa.selenium.safari.SafariDriver;
 
-public class SeleniumTest {
+public class HelperClass {
 	
-	private String baseUrl = "http://www.dunelm.com/";
+	private String baseUrl = "http://www.google.com/";
 	private WebDriver _driver;
+	private PageObjects pageObjects;
 	
-	public SeleniumTest(WebDriver driver)
+	public HelperClass(WebDriver driver)
 	{
 		_driver = driver;
+		pageObjects = new PageObjects(_driver);
 	}
 
 	public void goToHomePage(){
@@ -29,15 +28,13 @@ public class SeleniumTest {
 	}
 	public void searchForPillows() throws InterruptedException{
 
-		PageObjects pageObjects = new PageObjects(_driver);
-		String searchTerm = "pillows";
+		String searchTerm = "webdriver";
 		pageObjects.populateSearchTextbox(searchTerm);
 		pageObjects.clickSearchButton();		
 	}
 
 	public void checkPageTitle(){
 
-		assertEquals("Pillows | Feather Pillow & Memory Foam Pillows | Dunelm", _driver.getTitle());
-
-	}
+		assertEquals("webdriver - Google Search", pageObjects.getPageTitle());
+	}	
 }
