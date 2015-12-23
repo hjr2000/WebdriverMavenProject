@@ -1,20 +1,24 @@
 package stepDefinitions;
 
-import cucumber.api.java.en.*;
+import org.openqa.selenium.WebDriver;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import helperClasses.HelperClass;
 import pageObjects.PageObjects;
 import utilities.StartupTearDown;
 import utilities.Utilities;
-import org.openqa.selenium.WebDriver;
 
 public class StepDefs {
 	
 	private HelperClass helperClass;
 	private WebDriver _driver;
+	private Utilities utilities;
 	
 	//Variables shared between step defs
 	private String webpageTitle;
-	private Utilities utilities;
+	
 	
 	public StepDefs() throws Exception {
 		
