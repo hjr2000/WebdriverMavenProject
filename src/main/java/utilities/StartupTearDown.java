@@ -24,8 +24,6 @@ public class StartupTearDown {
 		
 		//note due to issue in wordpress, on the blog the URL does not display properly above. The URL should end with a forward slash, then quote marks, then a semi colon.
 
-		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
 		driver.manage().window().maximize();
 
 		Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
