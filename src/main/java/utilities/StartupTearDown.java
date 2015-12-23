@@ -6,13 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-
 public class StartupTearDown {
 	
 	private WebDriver driver;
 	private String browserName;
-	private String browserVersion;
-	private String baseUrl;
+	private String browserVersion;	
 	
 	public WebDriver setUp() throws Exception {
 
@@ -23,9 +21,7 @@ public class StartupTearDown {
 		//driver = new  InternetExplorerDriver ();
 
 		//driver = new  SafariDriver();
-
-		baseUrl = "https://www.google.com/";
-
+		
 		//note due to issue in wordpress, on the blog the URL does not display properly above. The URL should end with a forward slash, then quote marks, then a semi colon.
 
 		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -49,5 +45,4 @@ public class StartupTearDown {
 		System.out.println("teardown");
 		driver.quit();
 	}	
-
 }
