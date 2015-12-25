@@ -1,8 +1,9 @@
 package helperClasses;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
+
 import pageObjects.PageObjects;
 
 //import org.openqa.selenium.firefox.FirefoxDriver;
@@ -26,15 +27,16 @@ public class HelperClass {
 		_driver.get(baseUrl);
 
 	}
-	public void searchForPillows() throws InterruptedException{
-
-		String searchTerm = "webdriver";
-		pageObjects.populateSearchTextbox(searchTerm);
-		pageObjects.clickSearchButton();		
-	}
-
+	
 	public void checkPageTitle(){
 
 		assertEquals("webdriver - Google Search", pageObjects.getPageTitle());
+	}
+
+	public void searchFor(String searchTerm) {
+		
+		pageObjects.populateSearchTextbox(searchTerm);
+		pageObjects.clickSearchButton();
+		
 	}	
 }

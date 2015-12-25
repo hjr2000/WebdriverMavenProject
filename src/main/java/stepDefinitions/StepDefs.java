@@ -17,8 +17,7 @@ public class StepDefs {
 	private Utilities utilities;
 	
 	//Variables shared between step defs
-	private String webpageTitle;
-	
+	private String webpageTitle;	
 	
 	public StepDefs() throws Exception {
 		
@@ -27,20 +26,22 @@ public class StepDefs {
 		utilities = new Utilities(_driver);	
 	}	
 	
-	@Given("^I am on the homepage$")
-	public void i_am_on_the_homepage() throws Throwable {
+	@Given("^I am on the google homepage$")
+	public void i_am_on_the_google_homepage() throws Throwable {
 		
 		helperClass.goToHomePage();
 		webpageTitle = new PageObjects(_driver).getPageTitle();
 	}
-	
-	@When("^I search for pillows$")
-	public void i_search_for_pillows() throws Throwable {
-		helperClass.searchForPillows();
+
+	@When("^I search for webdriver$")
+	public void i_search_for_webdriver() throws Throwable {
+		
+		helperClass.searchFor("webdriver");
 	}
 	
 	@Then("^the page title is as expected$")
 	public void the_page_title_is_as_expected() throws Throwable {
+		
 		utilities.waitForWebPageTitleToChangeFromOriginal(webpageTitle);
 		helperClass.checkPageTitle();
 	}	

@@ -1,12 +1,12 @@
-Feature: Testing Dunelm
+Feature: Testing Google
 
 @Runme
 
-Scenario: Searching for pillows
+Scenario: Running a google search
 
-Given I am on the homepage
+Given I am on the google homepage
 
-When I search for pillows
+When I search for webdriver
 
 Then the page title is as expected
 
