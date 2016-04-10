@@ -1,5 +1,6 @@
 package utilities;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.WebElement;
@@ -84,6 +85,19 @@ public class Utilities {
         int sleepTimeOutMillis = 250;
         wait_local = new WebDriverWait(driver, waitTimeInSeconds, sleepTimeOutMillis);
         wait_local.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    public static void waitforTextToAppear(String textToFind) throws Exception {
+        boolean textFound = false;
+        for (int count = 0; count < 12; count++) {
+            textFound = driver.findElement(By.cssSelector("BODY")).getText().contains(textToFind);
+            if (textFound) {
+                break;
+            }
+            Thread.sleep(250);
+        }
+        if (!textFound)
+            throw new Exception("Searching for string '" + textToFind + "' on the current page but it appears to not be present.");
     }
 
 }

@@ -44,5 +44,9 @@ public class HelperClass {
 		googlePage.populateSearchTextbox(searchTerm);
 		googlePage.clickSearchButton();
 		
-	}	
+	}
+
+    public void goToBasicAuthUrl() {
+        _driver.get("http://" + baseUrl + "basic_auth");
+    }
 }

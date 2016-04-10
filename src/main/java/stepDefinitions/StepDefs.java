@@ -22,7 +22,6 @@ public class StepDefs {
 	private String webpageTitle;	
 	
 	public StepDefs() throws Exception {
-		
 		_driver = new StartupTearDown().setUp();
 		helperClass = new HelperClass(_driver);	
 		utilities = new Utilities(_driver);	
@@ -30,20 +29,17 @@ public class StepDefs {
 	
 	@Given("^I am on the google homepage$")
 	public void i_am_on_the_google_homepage() throws Throwable {
-		
 		helperClass.goToGoogleHomePage();
 		webpageTitle = new GooglePage(_driver).getPageTitle();
 	}
 
 	@When("^I search for webdriver$")
 	public void i_search_for_webdriver() throws Throwable {
-		
 		helperClass.searchFor("webdriver");
 	}
 	
 	@Then("^the page title is as expected$")
 	public void the_page_title_is_as_expected() throws Throwable {
-		
 		utilities.waitForWebPageTitleToChangeFromOriginal(webpageTitle);
 		helperClass.checkPageTitle();
 	}
@@ -61,23 +57,22 @@ public class StepDefs {
 
     @Given("^I attempt to access a page behind HTTP authentication$")
     public void i_attempt_to_access_a_page_behind_HTTP_authentication() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new Exception("This step def is incomplete");
+        helperClass.goToBasicAuthUrl();
     }
 
     @When("^I cancel the authentication dialog$")
     public void i_cancel_the_authentication_dialog() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new Exception("This step def is incomplete");
+        BasicAuthPage basicAuthPage = new BasicAuthPage(_driver);
+        basicAuthPage.cancelAuthPopup();
     }
 
     @Then("^I see the appropriate not authorised message$")
     public void i_see_the_appropriate_not_authorised_message() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new Exception("This step def is incomplete");
+        Utilities.waitforTextToAppear("Not authorized");
     }
 
-	@Then("^this step def is incomplete$")
+	//Deliberately incomplete step def, ignore.
+    @Then("^this step def is incomplete$")
 	public void this_step_def_is_incomplete() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
 		throw new Exception("This step def is incomplete");
