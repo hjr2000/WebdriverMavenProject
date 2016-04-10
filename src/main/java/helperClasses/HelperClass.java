@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.openqa.selenium.WebDriver;
 
-import pageObjects.PageObjects;
+import pageObjects.GooglePage;
 
 //import org.openqa.selenium.firefox.FirefoxDriver;
 //import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -12,31 +12,37 @@ import pageObjects.PageObjects;
 
 public class HelperClass {
 	
-	private String baseUrl = "http://www.google.com/";
+	private String sanityTestUrl = "http://www.google.com/";
+	private String baseUrl = "the-internet.herokuapp.com/";
+    private String standardUrlPrefix = "http://";
 	private WebDriver _driver;
-	private PageObjects pageObjects;
+	private GooglePage googlePage;
 	
 	public HelperClass(WebDriver driver)
 	{
 		_driver = driver;
-		pageObjects = new PageObjects(_driver);
+		googlePage = new GooglePage(_driver);
 	}
 
-	public void goToHomePage(){
+	public void goToGoogleHomePage(){
 
-		_driver.get(baseUrl);
-
+		_driver.get(sanityTestUrl);
 	}
+
+    public void goToBasicAuthUrlAndLogIn(){
+
+        _driver.get("http://admin:admin@" + baseUrl + "basic_auth");
+    }
 	
 	public void checkPageTitle(){
 
-		assertEquals("webdriver - Google Search", pageObjects.getPageTitle());
+		assertEquals("webdriver - Google Search", googlePage.getPageTitle());
 	}
 
 	public void searchFor(String searchTerm) {
 		
-		pageObjects.populateSearchTextbox(searchTerm);
-		pageObjects.clickSearchButton();
+		googlePage.populateSearchTextbox(searchTerm);
+		googlePage.clickSearchButton();
 		
 	}	
 }

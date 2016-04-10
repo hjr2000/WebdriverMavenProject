@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PageObjects {
+public class GooglePage {
 	
 	@FindBy(id = "lst-ib")
 	private WebElement searchTextbox;
@@ -17,7 +17,7 @@ public class PageObjects {
 	
 	private WebDriver _driver;
 	
-	public PageObjects(WebDriver driver) {
+	public GooglePage(WebDriver driver) {
 		
 		_driver = driver;
 		PageFactory.initElements(_driver, this);

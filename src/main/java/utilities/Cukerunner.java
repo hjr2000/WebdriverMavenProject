@@ -20,7 +20,8 @@ plugin = {"pretty",
 
 "junit:target/cucumber-junit-report/allcukes.xml"},
 
-tags = {"@Runme"}
+tags = {"@Runme"},
+        monochrome=true
 
 )
 
