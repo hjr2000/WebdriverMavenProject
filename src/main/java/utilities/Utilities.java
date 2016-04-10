@@ -16,7 +16,7 @@ public class Utilities {
     private static Wait<WebDriver> wait;
     private static final long DEFAULT_WAIT_TIMEOUT_SECS = 10;
     private static final long WAIT_FOR_PAGE_LOADED_DELAY = 3000;
-    private static final long DEFAULT_SLEEP_TIMEOUT_MILLIS = 300;
+    private static final long DEFAULT_SLEEP_TIMEOUT_MILLIS = 250;
 
 	private GooglePage googlePage;
 	
