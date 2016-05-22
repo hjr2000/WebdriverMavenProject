@@ -1,7 +1,6 @@
 Feature: Testing the internet
 
-
-@Runme
+  @Runme
 Scenario: Running a google search
   Given I am on the google homepage
   When I search for webdriver
@@ -16,3 +15,7 @@ Scenario: Cancelling the basic authentication dialog
   When I cancel the authentication dialog
   Then I see the appropriate not authorised message
 
+Scenario: Checking and unchecking textboxes
+  Given I am on the checkbox test page
+  When I click on both checkboxes
+  Then I see the appropriate checkboxes are checked and unchecked

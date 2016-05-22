@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.openqa.selenium.WebDriver;
 
+import pageObjects.CheckboxPage;
 import pageObjects.GooglePage;
 
 //import org.openqa.selenium.firefox.FirefoxDriver;
@@ -49,4 +50,17 @@ public class HelperClass {
     public void goToBasicAuthUrl() {
         _driver.get("http://" + baseUrl + "basic_auth");
     }
+
+	public void goToCheckboxesPage() {
+		_driver.get("http://" + baseUrl + "checkboxes");
+	}
+
+	public void checkCheckboxStates() throws Exception {
+
+		CheckboxPage checkboxPage = new CheckboxPage(_driver);
+		if (!checkboxPage.getCheckbox1State())
+			throw new Exception("Checkbox1 should be checked but is not checked");
+		if (checkboxPage.getCheckbox2State())
+			throw new Exception("Checkbox2 should be unchecked but it is checked");
+	}
 }

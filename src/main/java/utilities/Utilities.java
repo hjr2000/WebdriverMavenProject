@@ -1,6 +1,7 @@
 package utilities;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.WebElement;
@@ -46,7 +47,7 @@ public class Utilities {
 			throw new Exception ("The title of the web page is not changing");
 	}
 
-    public  void WaitForElementToBeClickableSafe(WebElement element) throws Exception {
+    public  static void WaitForElementToBeClickableSafe(WebElement element) throws Exception {
         WaitForElementToBeClickableSafe(element, 10);
     }
 
@@ -88,9 +89,13 @@ public class Utilities {
     }
 
     public static void waitforTextToAppear(String textToFind) throws Exception {
+
+        if (!doesElementExist(By.cssSelector("body"), 2000))
+            throw new Exception("Cannot find 'body' region on the page");
+
         boolean textFound = false;
         for (int count = 0; count < 12; count++) {
-            textFound = driver.findElement(By.cssSelector("BODY")).getText().contains(textToFind);
+            textFound = driver.findElement(By.cssSelector("body")).getText().contains(textToFind);
             if (textFound) {
                 break;
             }
@@ -100,4 +105,64 @@ public class Utilities {
             throw new Exception("Searching for string '" + textToFind + "' on the current page but it appears to not be present.");
     }
 
+    public static boolean doesElementExist(By webElementBy, int timeInMilliseconds) throws InterruptedException {
+
+        int timeElapsedInMilliseconds = 0;
+        boolean elementFound = false;
+
+        // Unavoidable thread sleep - to give the screen time to update
+        Thread.sleep(500);
+
+        while (timeElapsedInMilliseconds < timeInMilliseconds)
+        {
+            try {
+                driver.findElement(webElementBy);
+                elementFound = true;
+                //log.info("Element found");
+                break;
+            }
+            catch (NoSuchElementException ex){
+                //log.info("Exception caught");
+                Thread.sleep(250);
+                timeElapsedInMilliseconds += 250;
+            }
+        }
+        return elementFound;
+    }
+
+    ////////////////////////////////////////////////////////
+    // Checkbox operations
+    ////////////////////////////////////////////////////////
+
+    public static void setCheckBox(WebElement checkbox) {
+
+        int timeInSeconds = 2;
+        waitForWebElementToBeClickable(checkbox, timeInSeconds);
+        if (!checkbox.isSelected())
+        {
+            checkbox.click();
+        }
+    }
+
+    public static void clearCheckBox(WebElement checkbox) {
+
+        int timeInSeconds = 2;
+        waitForWebElementToBeClickable(checkbox, timeInSeconds);
+        if (checkbox.isSelected())
+        {
+            checkbox.click();
+        }
+    }
+
+    public static void toggleCheckBox(WebElement checkbox) {
+
+        int timeInSeconds = 2;
+        waitForWebElementToBeClickable(checkbox, timeInSeconds);
+        checkbox.click();
+    }
+
+    public static boolean getCheckBoxState(WebElement checkbox) {
+
+        return checkbox.isSelected();
+    }
 }

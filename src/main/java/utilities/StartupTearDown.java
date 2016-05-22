@@ -5,7 +5,10 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.URL;
 
 public class StartupTearDown {
 	
@@ -19,29 +22,31 @@ public class StartupTearDown {
 
 		driver = new ChromeDriver();
 
+		//driver = new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), DesiredCapabilities.chrome());
+
 		//driver = new  InternetExplorerDriver ();
 
 		//driver = new  SafariDriver();
 		
 		//note due to issue in wordpress, on the blog the URL does not display properly above. The URL should end with a forward slash, then quote marks, then a semi colon.
 
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 
-		Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+		//Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 
-		browserName = caps.getBrowserName();
+		//browserName = caps.getBrowserName();
 
-		browserVersion = caps.getVersion();
+		//browserVersion = caps.getVersion();
 
-		System.out.println("Automated test run. We're running on " + browserName + " " + browserVersion);
+		//System.out.println("Automated test run. We're running on " + browserName + " " + browserVersion);
 
 		return driver;
 	}	
 	
-	@After
+	/*@After
 	public void tearDown() {
 
 		System.out.println("teardown");
 		driver.quit();
-	}	
+	}	*/
 }

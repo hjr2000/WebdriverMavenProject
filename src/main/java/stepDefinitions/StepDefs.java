@@ -8,6 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import helperClasses.HelperClass;
 import pageObjects.BasicAuthPage;
+import pageObjects.CheckboxPage;
 import pageObjects.GooglePage;
 import utilities.StartupTearDown;
 import utilities.Utilities;
@@ -22,13 +23,16 @@ public class StepDefs {
 	private String webpageTitle;	
 	
 	public StepDefs() throws Exception {
+
 		_driver = new StartupTearDown().setUp();
-		helperClass = new HelperClass(_driver);	
-		utilities = new Utilities(_driver);	
+		utilities = new Utilities(_driver);
+		helperClass = new HelperClass(_driver);
+
 	}	
 	
 	@Given("^I am on the google homepage$")
 	public void i_am_on_the_google_homepage() throws Throwable {
+
 		helperClass.goToGoogleHomePage();
 		webpageTitle = new GooglePage(_driver).getPageTitle();
 	}
@@ -70,6 +74,24 @@ public class StepDefs {
     public void i_see_the_appropriate_not_authorised_message() throws Throwable {
         Utilities.waitforTextToAppear("Not authorized");
     }
+
+	@Given("^I am on the checkbox test page$")
+	public void i_am_on_the_checkbox_test_page() throws Throwable {
+		helperClass.goToCheckboxesPage();
+		Utilities.waitforTextToAppear("Checkboxes");
+	}
+
+	@When("^I click on both checkboxes$")
+	public void i_click_on_both_checkboxes() throws Throwable {
+		CheckboxPage checkboxPage = new CheckboxPage(_driver);
+		checkboxPage.setCheckbox1();
+		checkboxPage.clearCheckbox2();
+	}
+
+	@Then("^I see the appropriate checkboxes are checked and unchecked$")
+	public void i_see_the_appropriate_checkboxes_are_checked_and_unchecked() throws Throwable {
+		helperClass.checkCheckboxStates();
+	}
 
 	//Deliberately incomplete step def, ignore.
     @Then("^this step def is incomplete$")
