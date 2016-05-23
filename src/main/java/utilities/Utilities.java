@@ -6,9 +6,13 @@ import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.GooglePage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -164,5 +168,75 @@ public class Utilities {
     public static boolean getCheckBoxState(WebElement checkbox) {
 
         return checkbox.isSelected();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Drop Down Box Operations
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static void checkActualDropdownOptionsAgainstExpected(WebElement dropdownListElement, List<String> expectedOptionsList) throws Exception {
+
+        // Set up with regard to the actual options in the drop down
+        Select actualDropdownElementSelect = new Select(dropdownListElement);
+        int actualOptionCount = actualDropdownElementSelect.getOptions().size();
+        System.out.println("actualOptionCount :" + actualOptionCount);
+
+        // Check we have the expected number of options coming through
+        if (actualOptionCount != expectedOptionsList.size())
+            throw new Exception("Was expecting " + expectedOptionsList.size() + " options in the drop down box but there are " + actualOptionCount);
+
+        // Get the actual options
+        List<String> actualOptionsList = getActualDropDownOptionsList(dropdownListElement);
+
+        // Check off the expected options against the actual and note any missing
+        String missingOptions ="";
+        boolean optionFound;
+        int numberOfMissingOptions = 0;
+        for (String expectedOption : expectedOptionsList){
+            optionFound = false;
+            //for (int count = 0; count < actualOptionCount; count++) {
+            for (String actualOption : actualOptionsList)
+            {
+                //if (actualDropdownElementSelect.getOptions().get(count).getText().equals(expectedOption)){
+                if (actualOption.equals(expectedOption))
+                {
+                    //System.out.println("Found expectedOption '" + expectedOption + "' at position " + count);
+                    optionFound = true;
+                    break;
+                }
+            }
+            if (!optionFound){
+                missingOptions = missingOptions + expectedOption + ", ";
+                numberOfMissingOptions++;
+            }
+        }
+
+        // Report missing options
+        if (!missingOptions.equals("")) {
+            String exceptionTextToInsert = "";
+            if (numberOfMissingOptions == 1){
+                exceptionTextToInsert = "option is";
+            }
+            else
+            {
+                exceptionTextToInsert = "options are";
+            }
+            String missingOptionsTrimmed = missingOptions.substring(0, missingOptions.length()-2);
+            throw new Exception("The following expected " + exceptionTextToInsert + " missing from the drop down box : " + missingOptionsTrimmed);
+        }
+    }
+
+    public static List<String> getActualDropDownOptionsList(WebElement dropdownListElement) {
+
+        Select actualDropdownElementSelect = new Select(dropdownListElement);
+        int actualOptionCount = actualDropdownElementSelect.getOptions().size();
+
+        List<String> actualOptionsList = new ArrayList<String>();
+        for (int count = 0; count < actualOptionCount; count++) {
+            String optionText = actualDropdownElementSelect.getOptions().get(count).getText();
+            actualOptionsList.add(optionText);
+            //System.out.println(count + " : " + optionText);
+        }
+        return actualOptionsList;
     }
 }

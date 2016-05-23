@@ -93,7 +93,19 @@ public class StepDefs {
 		helperClass.checkCheckboxStates();
 	}
 
+	@Given("^I am on the dropdown list page$")
+	public void i_am_on_the_dropdown_list_page() throws Throwable {
+		helperClass.goToDropdownListPage();
+	}
+
+	@Then("^I see that the expected dropdown options are present$")
+	public void i_see_the_expected_options_are_present() throws Throwable {
+		helperClass.checkForExpectedDropDownOptions();
+	}
+
+	/////////////////////////////////////////////////////////
 	//Deliberately incomplete step def, ignore.
+	/////////////////////////////////////////////////////////
     @Then("^this step def is incomplete$")
 	public void this_step_def_is_incomplete() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
