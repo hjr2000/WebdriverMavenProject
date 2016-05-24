@@ -1,6 +1,5 @@
 Feature: Testing the internet
 
-
   @Runme
 Scenario: Running a google search
   Given I am on the google homepage
@@ -21,12 +20,17 @@ Scenario: Checking and unchecking textboxes
   When I click on both checkboxes
   Then I see the appropriate checkboxes are checked and unchecked
 
-  Scenario: Checking dropdown list options are as expected
-    Given I am on the dropdown list page
-    Then I see that the expected dropdown options are present
+Scenario: Checking a specific drop down list option is present
+  Given I am on the dropdown list page
+  Then I can check a specific drop down list option is present
+
+Scenario: Checking all dropdown list options are as expected
+  Given I am on the dropdown list page
+  Then I see that the expected dropdown options are present
 
   #work in process
-  Scenario: Checking dropdown list options
-    Given I am on the dropdown list page
-    When I select a specific drop down list option
-    Then the required option is selected
+Scenario: Checking droplist option select works correctly
+  Given I am on the dropdown list page
+  And I check a specific drop down list option is present
+  When I select a specific drop down list option
+  Then the required option is selected

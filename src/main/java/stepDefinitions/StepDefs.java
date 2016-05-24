@@ -103,12 +103,16 @@ public class StepDefs {
 		helperClass.checkForExpectedDropDownOptions();
 	}
 
+	@Then("^I can check a specific drop down list option is present$")
+	public void i_can_check_a_specific_drop_down_list_option_is_present() throws Throwable {
+		helperClass.checkForSpecificDropdownOption();
+	}
+
 	/////////////////////////////////////////////////////////
 	//Deliberately incomplete step def, ignore.
 	/////////////////////////////////////////////////////////
     @Then("^this step def is incomplete$")
 	public void this_step_def_is_incomplete() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		throw new Exception("This step def is incomplete");
+		throw new Exception("Not yet implemented");
 	}
 }

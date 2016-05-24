@@ -177,9 +177,7 @@ public class Utilities {
     public static void checkActualDropdownOptionsAgainstExpected(WebElement dropdownListElement, List<String> expectedOptionsList) throws Exception {
 
         // Set up with regard to the actual options in the drop down
-        Select actualDropdownElementSelect = new Select(dropdownListElement);
-        int actualOptionCount = actualDropdownElementSelect.getOptions().size();
-        System.out.println("actualOptionCount :" + actualOptionCount);
+        int actualOptionCount = getActualOptionCount(dropdownListElement);
 
         // Check we have the expected number of options coming through
         if (actualOptionCount != expectedOptionsList.size())
@@ -213,7 +211,7 @@ public class Utilities {
 
         // Report missing options
         if (!missingOptions.equals("")) {
-            String exceptionTextToInsert = "";
+            String exceptionTextToInsert;
             if (numberOfMissingOptions == 1){
                 exceptionTextToInsert = "option is";
             }
@@ -238,5 +236,37 @@ public class Utilities {
             //System.out.println(count + " : " + optionText);
         }
         return actualOptionsList;
+    }
+
+    public static void checkSpecificDropdownOptionAgainstActualOptions(WebElement dropdownListElement, String expectedOption) throws Exception {
+
+        // Check that there is at least one option
+        if (getActualOptionCount(dropdownListElement) == 0)
+            throw new Exception("The drop downbox box contains no options");
+
+        // Get the actual options
+        List<String> actualOptionsList = getActualDropDownOptionsList(dropdownListElement);
+
+        boolean foundExpectedOption = false;
+        for (String actualOption : actualOptionsList){
+            if (expectedOption.equals(actualOption)){
+                foundExpectedOption = true;
+                break;
+            }
+        }
+        if (!foundExpectedOption)
+            throw new Exception("The expected option of '" + expectedOption + "' was not found in the dropdown options list");
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Private methods
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private static int getActualOptionCount(WebElement dropdownListElement) {
+        // Get the number of actual options in the dropdown box
+        Select actualDropdownElementSelect = new Select(dropdownListElement);
+        int actualOptionCount = actualDropdownElementSelect.getOptions().size();
+        System.out.println("actualOptionCount :" + actualOptionCount);
+        return actualOptionCount;
     }
 }

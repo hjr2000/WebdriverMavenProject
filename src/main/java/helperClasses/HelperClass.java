@@ -84,4 +84,11 @@ public class HelperClass {
 		dropDownListPage.checkActualDropdownOptionsAgainstExpected_DropdownListPage(expectedOptions);
 
 	}
+
+	public void checkForSpecificDropdownOption() throws Exception {
+
+		DropdownListPage dropDownListPage = new DropdownListPage(_driver);
+		dropDownListPage.checkSpecificDropdownListOptionExists_DropdownListPage("Option 1");
+
+	}
 }

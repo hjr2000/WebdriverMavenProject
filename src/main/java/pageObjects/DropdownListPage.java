@@ -31,4 +31,9 @@ public class DropdownListPage {
 
         Utilities.checkActualDropdownOptionsAgainstExpected(dropdownListElement, expectedOptions);
     }
+
+    public void checkSpecificDropdownListOptionExists_DropdownListPage(String expectedOption) throws Exception {
+
+        Utilities.checkSpecificDropdownOptionAgainstActualOptions(dropdownListElement, expectedOption);
+    }
 }
