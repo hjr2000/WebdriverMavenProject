@@ -137,6 +137,20 @@ public class StepDefs {
 		Assert.assertTrue(loginPage.getLoginSuccessMessage().toUpperCase().contains("YOU LOGGED INTO A SECURE AREA"));
 	}
 
+	@When("^I try to log into the application with incorrect credentials$")
+	public void i_try_to_log_into_the_application_with_incorrect_credentials() throws Throwable {
+		LoginPage loginPage = new LoginPage(_driver);
+		loginPage.enterUsername("foo");
+		loginPage.enterPassword("foo");
+		loginPage.clickLoginButton();
+	}
+
+	@Then("^an error screen is shown$")
+	public void an_error_screen_is_shown() throws Throwable {
+		LoginPage loginPage = new LoginPage(_driver);
+		Assert.assertTrue(loginPage.getLoginSuccessMessage().toUpperCase().contains("YOUR USERNAME IS INVALID"));
+	}
+
 	/////////////////////////////////////////////////////////
 	//Deliberately incomplete step def, ignore.
 	/////////////////////////////////////////////////////////

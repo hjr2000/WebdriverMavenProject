@@ -1,7 +1,7 @@
 Feature: Testing the internet
 
 #internet facing test
-@Runme
+  @Runme
 Scenario: Running a google search
   Given I am on the google homepage
   When I search for webdriver
@@ -49,7 +49,8 @@ Scenario: Checking the log in process works correctly - correct credentials
 
 #Log in screen test 2
 #work in process - incomplete
-Scenario: Checking the log in process works correctly - incorrect credentials
+
+  Scenario: Checking the log in process works correctly - incorrect credentials
   Given I am on the login page
   When I try to log into the application with incorrect credentials
   Then an error screen is shown
