@@ -41,16 +41,14 @@ Scenario: Checking droplist option select works correctly
   When I select a specific drop down list option
   Then the required option is selected
 
- #Log in screen test 1
+#Log in screen test 1
 Scenario: Checking the log in process works correctly - correct credentials
   Given I am on the login page
   When I log into the application with the correct credentials
   Then the welcome screen is shown
 
 #Log in screen test 2
-#work in process - incomplete
-
-  Scenario: Checking the log in process works correctly - incorrect credentials
+Scenario: Checking the log in process works correctly - incorrect credentials
   Given I am on the login page
   When I try to log into the application with incorrect credentials
   Then an error screen is shown
