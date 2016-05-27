@@ -10,6 +10,7 @@ import helperClasses.HelperClass;
 import pageObjects.BasicAuthPage;
 import pageObjects.CheckboxPage;
 import pageObjects.GooglePage;
+import pageObjects.LoginPage;
 import utilities.StartupTearDown;
 import utilities.Utilities;
 
@@ -27,7 +28,6 @@ public class StepDefs {
 		_driver = new StartupTearDown().setUp();
 		utilities = new Utilities(_driver);
 		helperClass = new HelperClass(_driver);
-
 	}	
 	
 	@Given("^I am on the google homepage$")
@@ -98,14 +98,43 @@ public class StepDefs {
 		helperClass.goToDropdownListPage();
 	}
 
-	@Then("^I see that the expected dropdown options are present$")
-	public void i_see_the_expected_options_are_present() throws Throwable {
+	@Then("^I see that all the expected dropdown options are present$")
+	public void i_see_all_the_expected_options_are_present() throws Throwable {
 		helperClass.checkForExpectedDropDownOptions();
 	}
 
 	@Then("^I can check a specific drop down list option is present$")
 	public void i_can_check_a_specific_drop_down_list_option_is_present() throws Throwable {
 		helperClass.checkForSpecificDropdownOption();
+	}
+
+	@When("^I select a specific drop down list option$")
+	public void i_select_a_specific_drop_down_list_option() throws Throwable {
+		throw new Exception("Not yet implemented");
+	}
+
+	@Then("^the required option is selected$")
+	public void the_required_option_is_selected() throws Throwable {
+		throw new Exception("Not yet implemented");
+	}
+
+	@Given("^I am on the login page$")
+	public void i_am_on_the_login_page() throws Throwable {
+		helperClass.goToLogInPage();
+	}
+
+	@When("^I log into the application with the correct credentials$")
+	public void i_log_into_the_application_with_the_correct_credentials() throws Throwable {
+		LoginPage loginPage = new LoginPage(_driver);
+		loginPage.enterUsername("tomsmith");
+		loginPage.enterPassword("SuperSecretPassword!");
+		loginPage.clickLoginButton();
+	}
+
+	@Then("^the welcome screen is shown$")
+	public void the_welcome_screen_is_shown() throws Throwable {
+		LoginPage loginPage = new LoginPage(_driver);
+		Assert.assertTrue(loginPage.getLoginSuccessMessage().toUpperCase().contains("YOU LOGGED INTO A SECURE AREA"));
 	}
 
 	/////////////////////////////////////////////////////////

@@ -91,4 +91,8 @@ public class HelperClass {
 		dropDownListPage.checkSpecificDropdownListOptionExists_DropdownListPage("Option 1");
 
 	}
+
+	public void goToLogInPage()  {
+		_driver.get("http://" + baseUrl + "login");
+	}
 }

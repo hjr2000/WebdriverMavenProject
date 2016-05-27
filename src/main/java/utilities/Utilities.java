@@ -1,10 +1,7 @@
 package utilities;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
@@ -13,6 +10,7 @@ import pageObjects.GooglePage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -51,11 +49,11 @@ public class Utilities {
 			throw new Exception ("The title of the web page is not changing");
 	}
 
-    public  static void WaitForElementToBeClickableSafe(WebElement element) throws Exception {
-        WaitForElementToBeClickableSafe(element, 10);
+    public  static void waitForElementToBeClickableSafe(WebElement element) throws Exception {
+        waitForElementToBeClickableSafe(element, 10);
     }
 
-    public static void WaitForElementToBeClickableSafe(WebElement element, int waitTimeInSeconds) throws Exception
+    public static void waitForElementToBeClickableSafe(WebElement element, int waitTimeInSeconds) throws Exception
     {
         int count = 0;
         boolean continueOn = false;
@@ -111,6 +109,8 @@ public class Utilities {
 
     public static boolean doesElementExist(By webElementBy, int timeInMilliseconds) throws InterruptedException {
 
+        // Wait for a maximum specified amount of time for an element to exist and return true or false depending on the outcome
+
         int timeElapsedInMilliseconds = 0;
         boolean elementFound = false;
 
@@ -140,6 +140,8 @@ public class Utilities {
 
     public static void setCheckBox(WebElement checkbox) {
 
+        // Ensure the checkbox is set regardless of its present state
+
         int timeInSeconds = 2;
         waitForWebElementToBeClickable(checkbox, timeInSeconds);
         if (!checkbox.isSelected())
@@ -149,6 +151,8 @@ public class Utilities {
     }
 
     public static void clearCheckBox(WebElement checkbox) {
+
+        // Ensure the checkbox is cleared regardless of its present state
 
         int timeInSeconds = 2;
         waitForWebElementToBeClickable(checkbox, timeInSeconds);
@@ -259,14 +263,81 @@ public class Utilities {
     }
 
     ////////////////////////////////////////////////////////////////////////////////
+    // Textbox operation
+    ////////////////////////////////////////////////////////////////////////////////
+
+    public static void enterTextIntoTextbox(WebElement textboxElement, String textToSend) throws Exception {
+
+        waitForElementToBeClickableSafe(textboxElement);
+        textboxElement.clear();
+        sendKeysSafe(textboxElement, textToSend);
+    }
+
+    public static void sendKeysSafe(WebElement element, String stringToSend) throws Exception {
+
+        // Keep attempting to sendKeys to an element
+        boolean attemptSuccessful = false;
+        for (int count = 0; count < 8; count++){
+            try {
+                waitForWebElementToBeClickable(element, 30);
+                element.sendKeys(stringToSend);
+                attemptSuccessful = true;
+                break;
+
+            }
+            catch (org.openqa.selenium.InvalidElementStateException e){
+                //log.info("Invalid Element State Exception Caught\n");
+            }
+
+            Thread.sleep(250);
+        }
+        if (!attemptSuccessful)
+            throw new Exception ("Unable to enter text into text box - Invalid state exception thrown for every attempt.");
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Link clicking
+    ////////////////////////////////////////////////////////////////////////////////
+
+    // todo - code to click a link, and to wait a couple of seconds for a certain element that should appear. If it doesn't appear click the link again a maximum of three times.
+    // Sometimes Webdriver thinks it has clicked on a link but it doesn't seem to be actioned on the page itself.
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Element clicking
+    ////////////////////////////////////////////////////////////////////////////////
+
+    public static void elementClickSafe(WebElement elementToClick) throws Exception {
+
+        boolean success = false;
+
+        for (int i = 0; i < 12; i++) {
+            try {
+                elementToClick.click();
+                success = true;
+                break;
+            } catch (WebDriverException e) {
+                // Do nothing, we'll try again
+            }
+            Thread.sleep(250);
+        }
+        if (!success)
+            throw new Exception("WebDriver exception thrown every time we attempt to click this element");
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////////
 
     private static int getActualOptionCount(WebElement dropdownListElement) {
+
         // Get the number of actual options in the dropdown box
+
         Select actualDropdownElementSelect = new Select(dropdownListElement);
         int actualOptionCount = actualDropdownElementSelect.getOptions().size();
         System.out.println("actualOptionCount :" + actualOptionCount);
         return actualOptionCount;
     }
+
+
 }
