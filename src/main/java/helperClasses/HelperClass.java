@@ -95,4 +95,7 @@ public class HelperClass {
 	public void goToLogInPage()  {
 		_driver.get("http://" + baseUrl + "login");
 	}
+
+	public void goToDragAndDropPage() {_driver.get("http://" + baseUrl + "drag_and_drop");
+	}
 }

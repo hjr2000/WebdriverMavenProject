@@ -7,10 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import helperClasses.HelperClass;
-import pageObjects.BasicAuthPage;
-import pageObjects.CheckboxPage;
-import pageObjects.GooglePage;
-import pageObjects.LoginPage;
+import pageObjects.*;
 import utilities.StartupTearDown;
 import utilities.Utilities;
 
@@ -149,6 +146,26 @@ public class StepDefs {
 	public void an_error_screen_is_shown() throws Throwable {
 		LoginPage loginPage = new LoginPage(_driver);
 		Assert.assertTrue(loginPage.getLoginSuccessMessage().toUpperCase().contains("YOUR USERNAME IS INVALID"));
+	}
+
+	@Given("^I am on the drag and drop page$")
+	public void i_am_on_the_drag_and_drop_page() throws Throwable {
+		helperClass.goToDragAndDropPage();
+	}
+
+	@When("^I drag box A to box B$")
+	public void i_drag_box_A_to_box_B() throws Throwable {
+		DragAndDropPage dragAndDropPage = new DragAndDropPage(_driver);
+		Assert.assertTrue(dragAndDropPage.getColumnAText().equals("A"));
+		Assert.assertTrue(dragAndDropPage.getColumnBText().equals("B"));
+		dragAndDropPage.dragFromColumnAtoColumnB();
+	}
+
+	@Then("^the text shown on each is reversed$")
+	public void the_text_shown_on_each_is_reversed() throws Throwable {
+		DragAndDropPage dragAndDropPage = new DragAndDropPage(_driver);
+		Assert.assertTrue(dragAndDropPage.getColumnAText().equals("B"));
+		Assert.assertTrue(dragAndDropPage.getColumnBText().equals("A"));
 	}
 
 	/////////////////////////////////////////////////////////

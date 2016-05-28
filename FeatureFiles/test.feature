@@ -1,7 +1,8 @@
 Feature: Testing the internet
 
-#internet facing test
-  @Runme
+#Basic internet facing test
+
+@Runme
 Scenario: Running a google search
   Given I am on the google homepage
   When I search for webdriver
@@ -52,3 +53,9 @@ Scenario: Checking the log in process works correctly - incorrect credentials
   Given I am on the login page
   When I try to log into the application with incorrect credentials
   Then an error screen is shown
+
+#HTML5 Drag and drop test
+Scenario: Checking the drag and drop action works correctly
+  Given I am on the drag and drop page
+  When I drag box A to box B
+  Then the text shown on each is reversed
