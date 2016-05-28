@@ -1,7 +1,6 @@
 Feature: Testing the internet
 
 #Basic internet facing test
-
 @Runme
 Scenario: Running a google search
   Given I am on the google homepage
@@ -59,3 +58,15 @@ Scenario: Checking the drag and drop action works correctly
   Given I am on the drag and drop page
   When I drag box A to box B
   Then the text shown on each is reversed
+
+#Tables test 1
+#work in process - incomplete
+Scenario: Reading table data - no ID or class provided
+  Given I am on the tables page
+  When I read the due amount for "fbach@yahoo.com" in table example one
+  Then I see the due amount is "$51.00" in table example one for this customer
+
+#Tables test 2
+Scenario: Reading table data - ID and class provided
+  Given I am on the tables page
+  Then the due amount for "jdoe@hotmail.com" in table example two is "$100.00"

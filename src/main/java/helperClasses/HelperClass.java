@@ -82,7 +82,6 @@ public class HelperClass {
 		expectedOptions.add("Option 2");
 
 		dropDownListPage.checkActualDropdownOptionsAgainstExpected_DropdownListPage(expectedOptions);
-
 	}
 
 	public void checkForSpecificDropdownOption() throws Exception {
@@ -96,6 +95,10 @@ public class HelperClass {
 		_driver.get("http://" + baseUrl + "login");
 	}
 
-	public void goToDragAndDropPage() {_driver.get("http://" + baseUrl + "drag_and_drop");
+	public void goToDragAndDropPage() {_driver.get("http://" + baseUrl + "drag_and_drop");	}
+
+	public void goToTablesPage()   {
+		_driver.get("http://" + baseUrl + "tables");
 	}
+
 }

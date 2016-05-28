@@ -168,6 +168,18 @@ public class StepDefs {
 		Assert.assertTrue(dragAndDropPage.getColumnBText().equals("A"));
 	}
 
+	@Given("^I am on the tables page$")
+	public void i_am_on_the_tables_page() throws Throwable {
+		helperClass.goToTablesPage();
+	}
+
+	@Then("^the due amount for \"([^\"]*)\" in table example two is \"([^\"]*)\"$")
+	public void the_due_amount_for_in_table_example_two_is(String customerEmail, String dueAmount) throws Throwable {
+		TablesPage tablesPage = new TablesPage(_driver);
+		Assert.assertTrue(tablesPage.returnDueAmountTableExampleTwo(customerEmail).equals(dueAmount));
+	}
+
+
 	/////////////////////////////////////////////////////////
 	//Deliberately incomplete step def, ignore.
 	/////////////////////////////////////////////////////////
