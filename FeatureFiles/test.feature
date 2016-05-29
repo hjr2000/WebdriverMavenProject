@@ -60,13 +60,11 @@ Scenario: Checking the drag and drop action works correctly
   Then the text shown on each is reversed
 
 #Tables test 1
-#work in process - incomplete
-Scenario: Reading table data - no ID or class provided
+Scenario: Reading table data - only table ID provided
   Given I am on the tables page
   Then the due amount for "fbach@yahoo.com" in table example one is "$51.00"
 
 #Tables test 2
-
 Scenario: Reading table data - ID and class provided
   Given I am on the tables page
   Then the due amount for "jdoe@hotmail.com" in table example two is "$100.00"

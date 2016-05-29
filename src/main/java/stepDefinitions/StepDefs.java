@@ -176,7 +176,13 @@ public class StepDefs {
 	@Then("^the due amount for \"([^\"]*)\" in table example two is \"([^\"]*)\"$")
 	public void the_due_amount_for_in_table_example_two_is(String customerEmail, String dueAmount) throws Throwable {
 		TablesPage tablesPage = new TablesPage(_driver);
-		Assert.assertTrue(tablesPage.returnDueAmountTableExampleTwo(customerEmail).equals(dueAmount));
+		tablesPage.checkDueAmountForSpecificCustomer_TableExampleTwo(customerEmail, dueAmount);
+	}
+
+	@Then("^the due amount for \"([^\"]*)\" in table example one is \"([^\"]*)\"$")
+	public void the_due_amount_for_in_table_example_one_is(String customerEmail, String dueAmount) throws Throwable {
+		TablesPage tablesPage = new TablesPage(_driver);
+		tablesPage.checkDueAmountForSpecificCustomer_TableExampleOne(customerEmail, dueAmount);
 	}
 
 

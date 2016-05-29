@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,7 +29,11 @@ public class TablesPage {
     @FindBy(css = "#table2 .dues")
     private List<WebElement> dues;
 
-    public String returnDueAmountTableExampleTwo(String emailAddressSought) throws Exception {
+    @FindBy(css = "#table1 tbody tr")
+    private List<WebElement> table1rows;
+
+    public void checkDueAmountForSpecificCustomer_TableExampleTwo(String emailAddressSought, String dueValueExpected) throws Exception {
+
         // Find the row index for the row containing the target email address
 
         int index = 0;
@@ -46,17 +51,47 @@ public class TablesPage {
 
         // Find the associated due amount
 
-        String duesText = "";
+        String dueValueInTargetRow = "";
         int duesIndex = 0;
         for (WebElement duesElement : dues) {
-            duesText = duesElement.getText();
+            dueValueInTargetRow = duesElement.getText();
             if (duesIndex == index)
                 break;
             duesIndex++;
         }
 
-        System.out.println("Due amount : " + duesText);
+        if (!dueValueExpected.equals(dueValueInTargetRow))
+            throw new Exception("In table Example 2, for the customer with email address '" + emailAddressSought + "', the due value expected was " + dueValueExpected + " but the value " + dueValueInTargetRow + " was found.");
 
-        return duesText;
+    }
+
+    public void checkDueAmountForSpecificCustomer_TableExampleOne(String emailAddressSought, String dueValueExpected) throws Exception {
+
+        // Find out how many rows there are in the table.
+        int tableRows = table1rows.size();
+        System.out.println("Rows in table 'Example 1' : " + tableRows);
+
+        // Find the target email address, if it's there
+        boolean emailAddressFound = false;
+        int targetRowIndex = 0;
+        for (int rowCount = 1; rowCount < tableRows + 1; rowCount++){
+            if(_driver.findElement(By.cssSelector("#table1 tr:nth-of-type(" + rowCount + ") td:nth-of-type(3)")).getText().toUpperCase().equals(emailAddressSought.toUpperCase())){
+                emailAddressFound = true;
+                targetRowIndex = rowCount;
+                System.out.println("Target email address '" + emailAddressSought + "' found in row " + targetRowIndex);
+                break;
+            }
+        }
+
+        if (!emailAddressFound)
+            if (!emailAddressFound)
+                throw new Exception("The email address '" + emailAddressSought + "' was not found in the table 'Example 1'");
+
+        String dueValueInTargetRow = _driver.findElement(By.cssSelector("#table1 tr:nth-of-type(" + targetRowIndex + ") td:nth-of-type(4)")).getText();
+        System.out.println("Due value in target row is " + dueValueInTargetRow);
+
+        if (!dueValueExpected.equals(dueValueInTargetRow))
+            throw new Exception("In table Example 1, for the customer with email address '" + emailAddressSought + "', the due value expected was " + dueValueExpected + " but the value " + dueValueInTargetRow + " was found.");
+
     }
 }
