@@ -1,7 +1,7 @@
 Feature: Testing the internet
 
 #Basic internet facing test
-@Runme
+  @Runme
 Scenario: Running a google search
   Given I am on the google homepage
   When I search for webdriver
@@ -63,10 +63,10 @@ Scenario: Checking the drag and drop action works correctly
 #work in process - incomplete
 Scenario: Reading table data - no ID or class provided
   Given I am on the tables page
-  When I read the due amount for "fbach@yahoo.com" in table example one
-  Then I see the due amount is "$51.00" in table example one for this customer
+  Then the due amount for "fbach@yahoo.com" in table example one is "$51.00"
 
 #Tables test 2
+
 Scenario: Reading table data - ID and class provided
   Given I am on the tables page
   Then the due amount for "jdoe@hotmail.com" in table example two is "$100.00"

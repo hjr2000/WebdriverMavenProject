@@ -28,22 +28,24 @@ public class TablesPage {
     @FindBy(css = "#table2 .dues")
     private List<WebElement> dues;
 
-    public String returnDueAmountTableExampleTwo(String emailAddressSought)
-    {
+    public String returnDueAmountTableExampleTwo(String emailAddressSought) throws Exception {
         // Find the row index for the row containing the target email address
 
-        List<String> emailAddressList = new ArrayList<String>();
         int index = 0;
+        boolean emailAddressFound = false;
         for (WebElement emailElement : emailAddresses) {
             if (emailElement.getText().toUpperCase().equals(emailAddressSought.toUpperCase())){
+                emailAddressFound = true;
                 break;
             }
             index++;
         }
 
+        if (!emailAddressFound)
+            throw new Exception("The email address '" + emailAddressSought + "' was not found in the table Example 2");
+
         // Find the associated due amount
 
-        List<String> duesList = new ArrayList<String>();
         String duesText = "";
         int duesIndex = 0;
         for (WebElement duesElement : dues) {
