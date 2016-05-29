@@ -1,7 +1,7 @@
 Feature: Testing the internet
 
 #Basic internet facing test
-  @Runme
+@Runme
 Scenario: Running a google search
   Given I am on the google homepage
   When I search for webdriver
@@ -68,3 +68,15 @@ Scenario: Reading table data - only table ID provided
 Scenario: Reading table data - ID and class provided
   Given I am on the tables page
   Then the due amount for "jdoe@hotmail.com" in table example two is "$100.00"
+
+#Dynamic loading- element on a page that is hidden test, approach one using getAttribute
+Scenario: Checking for the display of an element which is hidden at first test 1
+  Given I am on the dynamically loaded page elements example one page
+  When I hit the start button
+  Then the hidden element text is displayed within 7 seconds
+
+#Dynamic loading- element on a page that is hidden test, approach two using an explicit wait
+Scenario: Checking for the display of an element which is hidden at first test 1
+  Given I am on the dynamically loaded page elements example one page
+  When I hit the start button
+  Then the hidden element text is seen to be displayed within 7 seconds

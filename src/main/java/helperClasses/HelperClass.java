@@ -101,4 +101,7 @@ public class HelperClass {
 		_driver.get("http://" + baseUrl + "tables");
 	}
 
+	public void goToDynamicLoadingPage1()    {
+		_driver.get("http://" + baseUrl + "dynamic_loading/1");
+	}
 }

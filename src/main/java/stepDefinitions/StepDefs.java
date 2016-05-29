@@ -185,6 +185,29 @@ public class StepDefs {
 		tablesPage.checkDueAmountForSpecificCustomer_TableExampleOne(customerEmail, dueAmount);
 	}
 
+	@Given("^I am on the dynamically loaded page elements example one page$")
+	public void i_am_on_the_dynamically_loaded_page_elements_example_one_page() throws Throwable {
+		helperClass.goToDynamicLoadingPage1();
+	}
+
+	@When("^I hit the start button$")
+	public void i_hit_the_start_button() throws Throwable {
+		DynamicLoadingPage1 dynamicLoadingPage1 = new DynamicLoadingPage1(_driver);
+		dynamicLoadingPage1.clickStartButton();
+	}
+
+	@Then("^the hidden element text is displayed within (\\d+) seconds$")
+	public void the_hidden_element_text_is_displayed_within_seconds(int timeToWaitInSeconds) throws Throwable {
+		DynamicLoadingPage1 dynamicLoadingPage1 = new DynamicLoadingPage1(_driver);
+		dynamicLoadingPage1.waitForFinishMessageToAppearWithSpecifiedTimeframe(timeToWaitInSeconds);
+	}
+
+	@Then("^the hidden element text is seen to be displayed within (\\d+) seconds$")
+	public void the_hidden_element_text_is_seen_to_be_displayed_within_seconds(int timeToWaitInSeconds) throws Throwable {
+		DynamicLoadingPage1 dynamicLoadingPage1 = new DynamicLoadingPage1(_driver);
+		dynamicLoadingPage1.waitForFinishMessageToAppearUsingExplicitWait(timeToWaitInSeconds);
+	}
+
 
 	/////////////////////////////////////////////////////////
 	//Deliberately incomplete step def, ignore.
