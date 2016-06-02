@@ -208,6 +208,29 @@ public class StepDefs {
 		dynamicLoadingPage1.waitForFinishMessageToAppearUsingExplicitWait(timeToWaitInSeconds);
 	}
 
+	@Given("^I am on the hovers test page$")
+	public void i_am_on_the_hovers_test_page() throws Throwable {
+		helperClass.goToHoversTestPage();
+	}
+
+	@Given("^the text for the first image is hidden$")
+	public void the_text_for_the_first_image_is_hidden() throws Throwable {
+		HoversPage hoversPage = new HoversPage(_driver);
+		Assert.assertFalse("The text associated with the first image is visible, it should be invisible", hoversPage.isImage1TextVisible());
+	}
+
+	@When("^I hover over the first image$")
+	public void i_hover_over_the_first_image() throws Throwable {
+		new HoversPage(_driver).hoverOverImage1();
+	}
+
+	@Then("^the text for the first image is displayed$")
+	public void the_text_for_the_first_image_is_displayed() throws Throwable {
+		HoversPage hoversPage = new HoversPage(_driver);
+		Assert.assertTrue("The text associated with the first image is invisible, it should be visible", hoversPage.isImage1TextVisible());
+
+	}
+
 
 	/////////////////////////////////////////////////////////
 	//Deliberately incomplete step def, ignore.

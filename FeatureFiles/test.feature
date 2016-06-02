@@ -80,3 +80,10 @@ Scenario: Checking for the display of an element which is hidden at first test 1
   Given I am on the dynamically loaded page elements example one page
   When I hit the start button
   Then the hidden element text is seen to be displayed within 7 seconds
+
+#Hover test - check text is displayed when hovering over an element
+Scenario: Checking hovering over an item causes the associated text to be displayed
+  Given I am on the hovers test page
+  And the text for the first image is hidden
+  When I hover over the first image
+  Then the text for the first image is displayed

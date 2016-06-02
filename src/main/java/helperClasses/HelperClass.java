@@ -104,4 +104,8 @@ public class HelperClass {
 	public void goToDynamicLoadingPage1()    {
 		_driver.get("http://" + baseUrl + "dynamic_loading/1");
 	}
+
+	public void goToHoversTestPage()     {
+		_driver.get("http://" + baseUrl + "hovers");
+	}
 }
