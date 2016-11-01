@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(
 
-features = {"featurefiles/"},
+features = {"FeatureFiles/"},
 
 glue = {"stepDefinitions"},
 
