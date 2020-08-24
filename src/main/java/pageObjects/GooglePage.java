@@ -8,11 +8,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GooglePage {
-	
-	@FindBy(id = "lst-ib")
+
+	@FindBy(name = "q")
 	private WebElement searchTextbox;
-	
-	@FindBy(className = "lsb")
+
+	@FindBy(name = "btnK")
 	private WebElement searchButton;
 	
 	private WebDriver _driver;
@@ -32,7 +32,7 @@ public class GooglePage {
 	public void clickSearchButton() {
 		
 		 WebDriverWait wait = new WebDriverWait(_driver, 10);
-	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("lsb")));
+	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("btnK")));
 	        
 		searchButton.click();		
 	}

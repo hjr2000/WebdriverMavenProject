@@ -16,7 +16,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class Utilities {
 	
-	private static WebDriver driver;
+	public static WebDriver driver;
     private static Wait<WebDriver> wait;
     private static final long DEFAULT_WAIT_TIMEOUT_SECS = 10;
     private static final long WAIT_FOR_PAGE_LOADED_DELAY = 3000;

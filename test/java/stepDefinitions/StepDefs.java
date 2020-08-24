@@ -1,15 +1,18 @@
 package stepDefinitions;
 
+import io.cucumber.java.After;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import helperClasses.HelperClass;
 import pageObjects.*;
 import utilities.StartupTearDown;
 import utilities.Utilities;
+
+import static utilities.Utilities.driver;
 
 public class StepDefs {
 	
@@ -238,5 +241,14 @@ public class StepDefs {
     @Then("^this step def is incomplete$")
 	public void this_step_def_is_incomplete() throws Throwable {
 		throw new Exception("Not yet implemented");
+	}
+
+	// The 'After' hook must be in the StepDefs file or CucumberJVM will ignore it!
+
+	@After
+	public void tearDown() {
+
+		System.out.println("Teardown - closing Webdriver.");
+		driver.quit();
 	}
 }

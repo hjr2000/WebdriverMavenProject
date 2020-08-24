@@ -1,6 +1,6 @@
 package utilities;
 
-import org.junit.After;
+import io.cucumber.java.After;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,21 +32,16 @@ public class StartupTearDown {
 
 		//driver.manage().window().maximize();
 
-		//Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+		Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 
-		//browserName = caps.getBrowserName();
+		browserName = caps.getBrowserName();
 
-		//browserVersion = caps.getVersion();
+		browserVersion = caps.getVersion();
 
-		//System.out.println("Automated test run. We're running on " + browserName + " " + browserVersion);
+		System.out.println("Automated test run. We're running on " + browserName + " " + browserVersion);
 
 		return driver;
 	}	
 	
-	/*@After
-	public void tearDown() {
 
-		System.out.println("teardown");
-		driver.quit();
-	}	*/
 }
