@@ -11,9 +11,6 @@ import utilities.Utilities;
 
 import java.io.File;
 
-/**
- * Created by Admin on 22/05/2016.
- */
 public class DragAndDropPage {
 
     private WebDriver _driver;

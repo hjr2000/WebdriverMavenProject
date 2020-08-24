@@ -20,7 +20,7 @@ public class StepDefs {
 	private WebDriver _driver;
 	private Utilities utilities;
 	
-	//Variables shared between step defs
+	//Variable shared between step defs
 	private String webpageTitle;	
 	
 	public StepDefs() throws Exception {
@@ -32,7 +32,6 @@ public class StepDefs {
 	
 	@Given("^I am on the google homepage$")
 	public void i_am_on_the_google_homepage() throws Throwable {
-
 		helperClass.goToGoogleHomePage();
 		webpageTitle = new GooglePage(_driver).getPageTitle();
 	}
@@ -233,7 +232,6 @@ public class StepDefs {
 		Assert.assertTrue("The text associated with the first image is invisible, it should be visible", hoversPage.isImage1TextVisible());
 
 	}
-
 
 	/////////////////////////////////////////////////////////
 	//Deliberately incomplete step def, ignore.

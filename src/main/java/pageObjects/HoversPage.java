@@ -7,9 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Utilities;
 
-/**
- * Created by Admin on 22/05/2016.
- */
 public class HoversPage {
 
     private WebDriver _driver;

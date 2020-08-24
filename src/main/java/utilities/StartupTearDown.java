@@ -1,14 +1,9 @@
 package utilities;
 
-import io.cucumber.java.After;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import java.net.URL;
 
 public class StartupTearDown {
 	
@@ -16,21 +11,21 @@ public class StartupTearDown {
 	private String browserName;
 	private String browserVersion;	
 	
-	public WebDriver setUp() throws Exception {
-
-		//driver = new FirefoxDriver();
+	public WebDriver setUp() {
 
 		driver = new ChromeDriver();
 
-		//driver = new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), DesiredCapabilities.chrome());
+		// Examples of other drivers we could use:
 
-		//driver = new  InternetExplorerDriver ();
+			//driver = new FirefoxDriver();
 
-		//driver = new  SafariDriver();
-		
-		//note due to issue in wordpress, on the blog the URL does not display properly above. The URL should end with a forward slash, then quote marks, then a semi colon.
+			//driver = new RemoteWebDriver(new URL("http://192.168.99.100:4444/wd/hub"), DesiredCapabilities.chrome());
 
-		//driver.manage().window().maximize();
+			//driver = new  InternetExplorerDriver();
+
+			//driver = new  SafariDriver();
+
+		driver.manage().window().maximize();
 
 		Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 

@@ -9,9 +9,6 @@ import utilities.Utilities;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-/**
- * Created by Admin on 10/04/2016.
- */
 public class LoginPage {
 
     private WebDriver _driver;

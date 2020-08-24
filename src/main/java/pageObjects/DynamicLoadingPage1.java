@@ -10,11 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Utilities;
 
-import java.io.File;
-
-/**
- * Created by Admin on 22/05/2016.
- */
 public class DynamicLoadingPage1 {
 
     private WebDriver _driver;

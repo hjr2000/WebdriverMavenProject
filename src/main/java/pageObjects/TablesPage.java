@@ -10,9 +10,6 @@ import utilities.Utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Admin on 22/05/2016.
- */
 public class TablesPage {
 
     private WebDriver _driver;
@@ -35,7 +32,6 @@ public class TablesPage {
     public void checkDueAmountForSpecificCustomer_TableExampleTwo(String emailAddressSought, String dueValueExpected) throws Exception {
 
         // Find the row index for the row containing the target email address
-
         int index = 0;
         boolean emailAddressFound = false;
         for (WebElement emailElement : emailAddresses) {
@@ -50,7 +46,6 @@ public class TablesPage {
             throw new Exception("The email address '" + emailAddressSought + "' was not found in the table Example 2");
 
         // Find the associated due amount
-
         String dueValueInTargetRow = "";
         int duesIndex = 0;
         for (WebElement duesElement : dues) {

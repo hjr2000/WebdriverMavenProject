@@ -10,9 +10,6 @@ import utilities.Utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Admin on 22/05/2016.
- */
 public class DropdownListPage {
 
     private WebDriver _driver;

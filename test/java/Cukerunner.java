@@ -7,18 +7,18 @@ import io.cucumber.junit.CucumberOptions;
 
 @CucumberOptions(
 
-features = {"test/resources/"},
+    features = {"test/resources/"},
 
-glue = {"stepDefinitions"},
+    glue = {"stepDefinitions"},
 
-plugin = {"pretty",
+    plugin = {"pretty",
 
-"html:target/cucumber-html-report",
+    "html:target/cucumber-html-report",
 
-"junit:target/cucumber-junit-report/allcukes.xml"},
+    "junit:target/cucumber-junit-report/allcukes.xml"},
 
-tags = "@Runme",
-        monochrome=true
+    tags = "@Runme",
+            monochrome=true
 
 )
 
